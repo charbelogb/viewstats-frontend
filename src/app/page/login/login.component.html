@@ -1,0 +1,35 @@
+<div class="background"></div>
+<div class="container">
+  <div class="container">
+    <div class="row">
+      <app-header></app-header>
+    </div> 
+   <div class="row">
+     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+       <div class="card">
+         <div class="card-header">
+            <h4>Login</h4>
+         </div>
+         <p class="tip">Saisissez vos identifiants</p>
+         <div class="card-form">
+           <div class="form-row">
+             <i class="material-icons">email</i>
+             <mat-form-field color="accent">
+               <input type="text" matInput placeholder="Email"/>
+             </mat-form-field>
+           </div>
+           <div class="form-row">
+             <i class="material-icons">lock_outline</i>
+             <mat-form-field color="accent">
+               <input type="password" matInput placeholder="Mot de passe"/>
+             </mat-form-field>
+           </div>
+         </div>
+         <div class="card-footer">
+           <button mat-button routerLink="/dashboard" (click)="loginBtn()">CONNEXION</button>
+         </div>
+       </div>
+     </div>
+   </div>
+  </div>
+</div>

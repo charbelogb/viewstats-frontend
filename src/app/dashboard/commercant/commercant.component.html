@@ -1,0 +1,43 @@
+<div class="container">
+  <app-navbar title="Commerçants"></app-navbar>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="material-icons">assignment</i>
+        </div>
+        <div class="card-content">
+          <h4 class="card-title">Liste des commerçants</h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-primary">
+                <tr>
+                  <th>Nom & prénoms</th>
+                  <th>Adresse</th>
+                  <th>Revenu journalier</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr *ngFor="let com of commercants"> 
+                  <td>{{com.nom}}</td>
+                  <td>{{com.adresse}}</td>
+                  <td class="text-primary">{{com.revenu}}</td>
+                  <td>
+                      <button mat-flat-button color="primary">
+                          <mat-icon>edit</mat-icon>
+                      </button> &nbsp;&nbsp;
+                      <button mat-flat-button color="warn">
+                          <mat-icon>delete</mat-icon>
+                      </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
