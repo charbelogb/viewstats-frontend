@@ -9,36 +9,85 @@
           <div class="card-content">
             <h4 class="card-title">Ajouter un utilisateur
             </h4>
-            <form>
+            <form name="form" (ngSubmit)="f.form.valid && addUser()" #f="ngForm" novalidate>
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field color="accent">
-                    <input matInput type="text" placeholder="Prénom" [(ngModel)]="prenom" name="prenom">
+                    <input matInput type="text" placeholder="Prénom" [(ngModel)]="model.prenom" #prenom="ngModel" name="prenom" [ngClass]="{ 'is-invalid': f.submitted && prenom.invalid }" required>
                   </mat-form-field>
+                  <div *ngIf="f.submitted && prenom.invalid">
+                      <div *ngIf="prenom.errors.required">Veuillez saisir le prénom</div>
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <mat-form-field color="accent">
-                    <input matInput type="text" placeholder="Nom" [(ngModel)]="nom" name="nom">
+                    <input matInput type="text" placeholder="Nom" [(ngModel)]="model.nom" #nom="ngModel" name="nom" [ngClass]="{ 'is-invalid': f.submitted && nom.invalid }" required>
                   </mat-form-field>
+                  <div *ngIf="f.submitted && nom.invalid">
+                      <div *ngIf="nom.errors.required">Veuillez saisir le nom</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field color="accent">
+                      <mat-select placeholder="Sexe" [(ngModel)]="model.sexe" name="sexe">
+                        <mat-option value="Homme">Homme</mat-option>
+                        <mat-option value="Femme">Femme</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field>
+                      <input matInput [matDatepicker]="picker" [(ngModel)]="model.date_naissance" #date_naissance="ngModel" name="date_naissance" placeholder="Date de naissance" readonly>
+                      <mat-datepicker-toggle matSuffix [for]="picker">
+                        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                      </mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field color="accent">
-                    <input matInput type="text" placeholder="Address">
+                    <input matInput type="text" [(ngModel)]="model.email" #email="ngModel" placeholder="Email" name="email" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
                   </mat-form-field>
+                  <div *ngIf="f.submitted && email.invalid">
+                      <div *ngIf="email.errors.required">Veuillez saisir l'adresse email</div>
+                      <div *ngIf="email.errors.email">Adresse email non valide</div>
+                  </div>
                 </div>
                 <div class="col-md-6">
                   <mat-form-field color="accent">
-                    <mat-select name="sexe" [(ngModel)]="sexe" placeholder="Sexe">
-                      <mat-option value="option">Homme</mat-option>
-                      <mat-option value="option">Femme</mat-option>
-                    </mat-select>
+                    <input matInput type="password" [(ngModel)]="model.password" #password="ngModel" placeholder="Mot de passe" name="password" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="8">
                   </mat-form-field>
+                  <div *ngIf="f.submitted && password.invalid">
+                      <div *ngIf="password.errors.required">Saisissez le mot de passe</div>
+                      <div *ngIf="password.errors.minlength">Saisissez au min 8 caractères</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field color="accent">
+                        <mat-select name="role" [(ngModel)]="model.role" placeholder="Rôle">
+                          <mat-option value="Agent">Agent</mat-option>
+                          <mat-option value="Admin">Admin</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field color="accent">
+                      <input matInput type="password" [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel" placeholder="Confirm. Mot de passe" name="confirmPassword" [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.invalid }" required>
+                    </mat-form-field>
+                    <div *ngIf="f.submitted && confirmPassword.invalid">
+                        <div *ngIf="confirmPassword.errors.required">Confirmez le mot de passe</div>
+                    </div>
                 </div>
               </div>
               <div class="row action-btn">
-                <button md-raised-button (click)="addUser()" class="btn btn-rose">AJOUTER</button>
+                <button type="submit" md-raised-button class="btn btn-rose">AJOUTER</button>
+                <button md-raised-button class="btn" (click)="reset()">ANNULER</button>
               </div>
             </form>
           </div>
@@ -49,11 +98,10 @@
           <div class="profile">
             <img src=".../../../assets/img/marc.jpg" alt="profile"/>
           </div>
-          <h6>CEO / CO-FOUNDER</h6>
-          <h4>{{ prenom }} {{ nom }}</h4>
+          <h6>{{model.role | uppercase}}</h6>
+          <h4>{{ model.prenom }} {{ model.nom }}</h4>
           <p>Don't be scared of the truth because we need to restart the human foundation in truth And I love you like
             Kanye loves Kanye I love Rick Owens’ bed design but the back is...</p>
-          <button mat-raised-button class="btn btn-rose btn-round">CHANGE</button>
         </div>
       </div>
     </div>

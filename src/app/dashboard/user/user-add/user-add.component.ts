@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/user';
+import { NgForm } from '@angular/forms';
 declare const $: any;
 
 @Component({
@@ -8,24 +9,25 @@ declare const $: any;
   styleUrls: ['./user-add.component.css']
 })
 export class UserAddComponent implements OnInit {
-  user : User;
-  nom : any;
-  prenom : any;
-  sexe : any;
+  //user : User ;
+  model : any = {};
 
   constructor() { }
 
   ngOnInit() {
+    this.model.sexe = "Homme";
+    this.model.role = "Agent";
   }
 
-  addUser(){
-    this.user.nom = this.nom;
-    this.user.prenom = this.prenom;
-    this.user.sexe = this.sexe;
-    alert(this.user);
+  addUser(f: NgForm){
+    this.showPopPup("top-center", "Utilisateur ajouté avec succès !");
   }
 
-  btnClick(position) { 
+  reset(){
+    
+  }
+
+  showPopPup(position, msg) { 
     let from = 'top';
     let align = 'right';
     let type = 'info';
@@ -54,7 +56,7 @@ export class UserAddComponent implements OnInit {
         break;
     }
     $.notify({
-      message: 'Utilisateur ajouté avec succès !',
+      message: msg,
     }, {
       placement: {from, align},
       offset: {x: 20, y: 35},

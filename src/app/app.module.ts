@@ -5,7 +5,9 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { routing } from './app.routes';
 import { MatButtonModule, MatRadioModule, MatInputModule, MatMenuModule, MatCheckboxModule, MatSelectModule, MatIconModule,
+  MatNativeDateModule
  } from '@angular/material';
+ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -72,9 +74,14 @@ import { UserAddComponent } from './dashboard/user/user-add/user-add.component';
     MatMenuModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [SettingsService],
+  providers: [
+    SettingsService,
+    MatDatepickerModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
