@@ -8,13 +8,13 @@ import { User } from 'app/models/user';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  
+  users : User[];
 
   constructor(private apiService : ApiService) { }
 
   ngOnInit() {
-    this.apiService.getCommercants().subscribe((res)=>{
-      
+    this.apiService.getUtilisateurs().subscribe((res)=>{
+      this.users = res; 
     });
   }
 

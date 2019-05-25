@@ -26,87 +26,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr> 
-                  <td>AAAAA aaaaa</td>
-                  <td>M</td>
-                  <td>01/01/1970</td>
-                  <td>email@email.com</td>
-                  <td>Administrator</td>
-                  <td>
-                      <button mat-flat-button color="primary">
-                          <mat-icon>edit</mat-icon>
-                      </button> &nbsp;&nbsp;
-                      <button mat-flat-button color="warn">
-                          <mat-icon>delete</mat-icon>
-                      </button>
-                  </td>
-                </tr>
-                <tr> 
-                  <td>AAAAA aaaaa</td>
-                  <td>M</td>
-                  <td>01/01/1970</td>
-                  <td>email@email.com</td>
-                  <td>Administrator</td>
-                  <td>
-                      <button mat-flat-button color="primary">
-                          <mat-icon>edit</mat-icon>
-                      </button> &nbsp;&nbsp;
-                      <button mat-flat-button color="warn">
-                          <mat-icon>delete</mat-icon>
-                      </button>
-                  </td>
-                </tr>
-                <tr> 
-                  <td>AAAAA aaaaa</td>
-                  <td>M</td>
-                  <td>01/01/1970</td>
-                  <td>email@email.com</td>
-                  <td>Administrator</td>
-                  <td>
-                      <button mat-flat-button color="primary">
-                          <mat-icon>edit</mat-icon>
-                      </button> &nbsp;&nbsp;
-                      <button mat-flat-button color="warn">
-                          <mat-icon>delete</mat-icon>
-                      </button>
-                  </td>
-                </tr>
-                <tr> 
-                  <td>AAAAA aaaaa</td>
-                  <td>M</td>
-                  <td>01/01/1970</td>
-                  <td>email@email.com</td>
-                  <td>Administrator</td>
-                  <td>
-                      <button mat-flat-button color="primary">
-                          <mat-icon>edit</mat-icon>
-                      </button> &nbsp;&nbsp;
-                      <button mat-flat-button color="warn">
-                          <mat-icon>delete</mat-icon>
-                      </button>
-                  </td>
-                </tr>
-                <tr> 
-                  <td>AAAAA aaaaa</td>
-                  <td>M</td>
-                  <td>01/01/1970</td>
-                  <td>email@email.com</td>
-                  <td>Administrator</td>
-                  <td>
-                      <button mat-flat-button color="primary">
-                          <mat-icon>edit</mat-icon>
-                      </button> &nbsp;&nbsp;
-                      <button mat-flat-button color="warn">
-                          <mat-icon>delete</mat-icon>
-                      </button>
-                  </td>
-                </tr>
-                <tr> 
-                  <td>AAAAA aaaaa</td>
-                  <td>M</td>
-                  <td>01/01/1970</td>
-                  <td>email@email.com</td>
-                  <td>Administrator</td>
+                <tr *ngFor="let user of users"> 
+                  <td>{{user.prenom}} {{user.nom | uppercase}}</td>
+                  <td>{{user.sexe}}</td>
+                  <td>{{user.date_naissance}}</td>
+                  <td>{{user.email}}</td>
+                  <td>{{user.agent}}</td>
                   <td>
                       <button mat-flat-button color="primary">
                           <mat-icon>edit</mat-icon>

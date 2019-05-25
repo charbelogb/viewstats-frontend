@@ -4,5 +4,6 @@ export class User {
     sexe : string;
     date_naissance : Date;
     email : string;
-    password : string
+    password : string;
+    role : string
 }

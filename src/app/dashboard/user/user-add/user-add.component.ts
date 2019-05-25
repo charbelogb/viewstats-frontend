@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/user';
 import { NgForm } from '@angular/forms';
+import {Router} from "@angular/router"
+import {ApiService} from '../../../services/api.service';
 declare const $: any;
 
 @Component({
@@ -9,18 +11,38 @@ declare const $: any;
   styleUrls: ['./user-add.component.css']
 })
 export class UserAddComponent implements OnInit {
-  //user : User ;
+  user = new User();
   model : any = {};
+  result : any = {};
 
-  constructor() { }
+  constructor(private apiService : ApiService, private router : Router) { }
 
   ngOnInit() {
-    this.model.sexe = "Homme";
-    this.model.role = "Agent";
+    this.model.sexe = "H";
+    this.model.role = "1";
   }
 
   addUser(f: NgForm){
-    this.showPopPup("top-center", "Utilisateur ajouté avec succès !");
+    console.log(this.model);
+    this.user.prenom = this.model.prenom;
+    this.user.nom = this.model.nom;
+    this.user.date_naissance = this.model.date_naissance;
+    this.user.sexe = this.model.sexe;
+    this.user.email = this.model.email;
+    this.user.password = this.model.password;
+    this.user.role = this.model.role;
+    this.apiService.addUtilisateur(this.user).subscribe((res)=>{ //console.log(res);
+      this.result = res;
+      if(this.result.status == 200){
+        this.showPopPup("top-center", "Utilisateur ajouté avec succès !");
+        this.router.navigate(['/dashboard/user'])
+        //this.model = {};
+      }else{
+        this.showPopPup("top-center", "Echec !");
+      }
+      
+    });
+    
   }
 
   reset(){
